@@ -1,0 +1,8 @@
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\StockPortfolioAPI.csproj.AssemblyReference.cache
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\StockPortfolioAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\StockPortfolioAPI.AssemblyInfoInputs.cache
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\StockPortfolioAPI.AssemblyInfo.cs
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\StockPortfolioAPI.csproj.CoreCompileInputs.cache
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\StockPortfolioAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\backend\test-backend\StockPortfolioAPI\obj\Debug\net9.0\StockPortfolioAPI.MvcApplicationPartsAssemblyInfo.cache
