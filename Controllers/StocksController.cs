@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockPortfolioAPI.Models.DTOs;
 using StockPortfolioAPI.Services;
@@ -39,6 +40,7 @@ namespace StockPortfolioAPI.Controllers
         /// Get stock by ID
         /// </summary>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<StockDto>> GetStock(int id)
         {
             try
@@ -60,6 +62,7 @@ namespace StockPortfolioAPI.Controllers
         /// Get stock by symbol
         /// </summary>
         [HttpGet("symbol/{symbol}")]
+        [AllowAnonymous]
         public async Task<ActionResult<StockDto>> GetStockBySymbol(string symbol)
         {
             try
@@ -81,6 +84,7 @@ namespace StockPortfolioAPI.Controllers
         /// Search stocks by symbol, company name, sector, or industry
         /// </summary>
         [HttpGet("search")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<StockDto>>> SearchStocks([FromQuery] string q)
         {
             try
@@ -102,6 +106,7 @@ namespace StockPortfolioAPI.Controllers
         /// Create a new stock
         /// </summary>
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<StockDto>> CreateStock(CreateStockDto createStockDto)
         {
             try
@@ -127,6 +132,7 @@ namespace StockPortfolioAPI.Controllers
         /// Update an existing stock
         /// </summary>
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<ActionResult<StockDto>> UpdateStock(int id, UpdateStockDto updateStockDto)
         {
             try
@@ -151,6 +157,7 @@ namespace StockPortfolioAPI.Controllers
         /// Update stock price
         /// </summary>
         [HttpPut("{id}/price")]
+        [Authorize]
         public async Task<ActionResult> UpdateStockPrice(int id, [FromBody] decimal newPrice)
         {
             try
@@ -175,6 +182,7 @@ namespace StockPortfolioAPI.Controllers
         /// Delete a stock (soft delete)
         /// </summary>
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult> DeleteStock(int id)
         {
             try

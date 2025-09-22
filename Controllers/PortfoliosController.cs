@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using StockPortfolioAPI.Models.DTOs;
 using StockPortfolioAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StockPortfolioAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PortfoliosController : ControllerBase
     {
         private readonly IPortfolioService _portfolioService;
@@ -21,6 +23,7 @@ namespace StockPortfolioAPI.Controllers
         /// Get all portfolios
         /// </summary>
         [HttpGet]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult<IEnumerable<PortfolioDto>>> GetPortfolios()
         {
             try
@@ -99,6 +102,7 @@ namespace StockPortfolioAPI.Controllers
         /// Create a new portfolio
         /// </summary>
         [HttpPost]
+        [Authorize(Policy = "UserOrAdmin")]
         public async Task<ActionResult<PortfolioDto>> CreatePortfolio(CreatePortfolioDto createPortfolioDto)
         {
             try
@@ -120,6 +124,7 @@ namespace StockPortfolioAPI.Controllers
         /// Update an existing portfolio
         /// </summary>
         [HttpPut("{id}")]
+        [Authorize(Policy = "UserOrAdmin")]
         public async Task<ActionResult<PortfolioDto>> UpdatePortfolio(int id, UpdatePortfolioDto updatePortfolioDto)
         {
             try
@@ -144,6 +149,7 @@ namespace StockPortfolioAPI.Controllers
         /// Update portfolio values (recalculate)
         /// </summary>
         [HttpPut("{id}/recalculate")]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult> RecalculatePortfolio(int id)
         {
             try
@@ -165,6 +171,7 @@ namespace StockPortfolioAPI.Controllers
         /// Delete a portfolio (soft delete)
         /// </summary>
         [HttpDelete("{id}")]
+        [Authorize(Policy = "UserOrAdmin")]
         public async Task<ActionResult> DeletePortfolio(int id)
         {
             try
