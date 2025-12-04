@@ -8,7 +8,13 @@ namespace StockPortfolioAPI.Data
         public static async Task SeedAsync(StockPortfolioDbContext context)
         {
             // Ensure database is created
+            // Code first approach to create the database
             await context.Database.EnsureCreatedAsync();
+
+            // dotnet tool install --global dotnet-ef
+            // dotnet ef migrations add InitialCreate
+            // Replace EnsureCreatedAsync with Migrate
+            // await context.Database.MigrateAsync();
 
             // Check if data already exists
             if (await context.Stocks.AnyAsync())

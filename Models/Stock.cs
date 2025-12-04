@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StockPortfolioAPI.Models
 {
+    // Annotation for the Stock class
+    // Note: If this class were partial, it would indicate a database-first approach.
+    // Since this is a code-first approach, the class is not partial.
     public class Stock : BaseEntity
     {
         [Required]

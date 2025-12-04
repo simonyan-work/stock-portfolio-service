@@ -16,11 +16,15 @@ namespace StockPortfolioAPI.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //OnModelCreating is a code first approach to configure the model
+            //OnModelCreatingPartial is a partial method that can be overridden to add more configuration
             base.OnModelCreating(modelBuilder);
             
             // Configure Stock entity
             modelBuilder.Entity<Stock>(entity =>
             {
+                // fluent API for the Stock entity
+                // will redundant with the annotations in the Stock class
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.Symbol).IsUnique();
                 entity.Property(e => e.Symbol).IsRequired().HasMaxLength(10);
@@ -29,6 +33,7 @@ namespace StockPortfolioAPI.Data
                 entity.Property(e => e.Industry).HasMaxLength(50);
                 entity.Property(e => e.Exchange).HasMaxLength(10);
                 entity.Property(e => e.Currency).HasMaxLength(10).HasDefaultValue("USD");
+                // must do because the database is created with decimal(18,2)
                 entity.Property(e => e.CurrentPrice).HasColumnType("decimal(18,2)");
                 entity.Property(e => e.MarketCap).HasColumnType("decimal(18,2)");
                 entity.Property(e => e.Volume).HasColumnType("decimal(18,2)");

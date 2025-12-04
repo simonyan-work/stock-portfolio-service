@@ -117,10 +117,23 @@ app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.MapControllers();
 
-// Ensure database is created and seed data
+// Creates a service scope - This is necessary to resolve scoped services like StockPortfolioDbContext during application startup
+// Gets the database context - Retrieves the Entity Framework DbContext from dependency injection
+// Calls SeedDataService.SeedAsync() - This method:
+// Ensures the database is created (EnsureCreatedAsync())
+// Checks if data already exists (returns early if stocks already exist)
+// Seeds the database with sample data including:
+// 6 sample stocks (AAPL, MSFT, GOOGL, TSLA, AMZN, NVDA)
+// 3 sample portfolios
+// Sample transactions
+// Portfolio stock holdings calculated from transactions
+
+// Ensure database is created and seed data -> Code first approach to create the database
 using (var scope = app.Services.CreateScope())
 {
+    // Database won't be automatically created if removed from the context
     var context = scope.ServiceProvider.GetRequiredService<StockPortfolioDbContext>();
+   // Seed the database with initial data
     await SeedDataService.SeedAsync(context);
 }
 
